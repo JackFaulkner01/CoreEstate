@@ -6,7 +6,7 @@ namespace CoreEstate.Models
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            var customer = (Customer) validationContext.ObjectInstance;
+            var customer = (WebUser) validationContext.ObjectInstance;
 
             if (customer.Birthdate == null)
             {

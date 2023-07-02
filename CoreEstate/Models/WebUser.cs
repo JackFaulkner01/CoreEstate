@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoreEstate.Models
 {
-    public class Customer
+    public class WebUser : IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
-
-        [Display(Name = "Customer Name")]
+        [Display(Name = "User Name")]
         [StringLength(60, MinimumLength = 3)]
         [Required]
         public required string Name { get; set; }
