@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CoreEstate.Data;
 using CoreEstate.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
-namespace CoreEstate.Pages.ToRentProperties
+namespace CoreEstate.Pages.ToRent
 {
+    [Authorize(Roles = RoleName.IsPropertyManager)]
     public class DeleteModel : PageModel
     {
         private readonly CoreEstate.Data.ApplicationDbContext _context;

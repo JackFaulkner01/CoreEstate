@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CoreEstate.Data;
 using CoreEstate.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace CoreEstate.Pages.ToRentProperties
+namespace CoreEstate.Pages.ToRent
 {
+    [AllowAnonymous]
     public class DetailsModel : PageModel
     {
         private readonly CoreEstate.Data.ApplicationDbContext _context;

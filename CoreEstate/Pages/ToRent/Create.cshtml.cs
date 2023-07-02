@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CoreEstate.Data;
 using CoreEstate.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
-namespace CoreEstate.Pages.ToRentProperties
+namespace CoreEstate.Pages.ToRent
 {
+    [Authorize(Roles = RoleName.IsPropertyManager)]
     public class CreateModel : PageModel
     {
         private readonly CoreEstate.Data.ApplicationDbContext _context;

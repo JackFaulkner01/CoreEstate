@@ -1,7 +1,6 @@
 ﻿using CoreEstate.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
 
 namespace CoreEstate.Models
 {
@@ -67,25 +66,21 @@ namespace CoreEstate.Models
 
                 // Look for any users with IsTestUser role.
                 var userManager = serviceProvider.GetRequiredService<UserManager<WebUser>>();
+                var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
                 var userExists = await userManager.GetUsersInRoleAsync(RoleName.IsTestUser);
 
                 if (userExists.Count() < 1)
                 {
                     // Database has not been seeded with IsTestUser role users.
-                    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
                     await roleManager.CreateAsync(new IdentityRole(RoleName.IsTestUser));
 
                     foreach (var user in context.Users)
                     {
                         var res = await userManager.AddToRoleAsync(user, RoleName.IsTestUser);
+
                         if (res.Succeeded)
                         {
-                            await Console.Out.WriteLineAsync("Succeeded");
                             await userManager.AddPasswordAsync(user, "Password123#");
-                        }
-                        else
-                        {
-                            await Console.Out.WriteLineAsync("Failed");
                         }
                     }
                 }
