@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using CoreEstate.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreEstate.Data
@@ -9,5 +10,7 @@ namespace CoreEstate.Data
             : base(options)
         {
         }
+
+        public DbSet<Customer> Customer { get; set; } = default!;
     }
 }
