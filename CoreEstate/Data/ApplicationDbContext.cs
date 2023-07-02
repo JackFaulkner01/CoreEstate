@@ -14,5 +14,7 @@ namespace CoreEstate.Data
         public DbSet<ForSaleProperty> ForSaleProperties { get; set; } = default!;
 
         public DbSet<ToRentProperty> ToRentProperties { get; set; } = default!;
+
+        public DbSet<PropertyViewing> PropertyViewings { get; set; } = default!;
     }
 }
