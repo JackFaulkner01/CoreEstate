@@ -10,5 +10,9 @@ namespace CoreEstate.Data
             : base(options)
         {
         }
+
+        public DbSet<ForSaleProperty> ForSaleProperties { get; set; } = default!;
+
+        public DbSet<ToRentProperty> ToRentProperties { get; set; } = default!;
     }
 }

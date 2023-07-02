@@ -1,6 +1,7 @@
 ﻿using CoreEstate.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace CoreEstate.Models
 {
@@ -16,7 +17,7 @@ namespace CoreEstate.Models
                     throw new ArgumentNullException("Null ApplicationDbContext.");
                 }
 
-                // Look for any users .
+                // Look for any users.
                 if (!context.Users.Any())
                 {
                     // Database has not been seeded with users.
@@ -41,6 +42,24 @@ namespace CoreEstate.Models
                         new WebUser { UserName = "joshua.kerr@coreestate.com", Email = "joshua.kerr@coreestate.com", Name = "Joshua Kerr", Birthdate = DateTime.Parse("1963-12-12") },
                         new WebUser { UserName = "eliza.john@coreestate.com", Email = "eliza.john@coreestate.com", Name = "Eliza John", Birthdate = DateTime.Parse("1958-03-26") },
                         new WebUser { UserName = "anas.gibson@coreestate.com", Email = "anas.gibson@coreestate.com", Name = "Anas Gibson", Birthdate = DateTime.Parse("1983-02-07") }
+                    );
+                }
+
+                // Look for any for sale properties.
+                if (!context.ForSaleProperties.Any())
+                {
+                    // Database has not been seeded with for sale properties.
+                    context.ForSaleProperties.AddRange(
+                        new ForSaleProperty { Name = "", Address = "", Description = "", Price = 0, IsFreehold = true }
+                    );
+                }
+
+                // Look for any to rent properties.
+                if (!context.ToRentProperties.Any())
+                {
+                    // Database has not been seeded with to rent properties.
+                    context.ToRentProperties.AddRange(
+                        new ToRentProperty { Name = "", Address = "", Description = "", Rent = 0, Despoit = 0 }
                     );
                 }
 

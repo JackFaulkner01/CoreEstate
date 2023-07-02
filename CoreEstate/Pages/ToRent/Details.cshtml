@@ -1,0 +1,49 @@
+﻿@page
+@model CoreEstate.Pages.ToRentProperties.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ToRentProperty</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ToRentProperty.Rent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ToRentProperty.Rent)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ToRentProperty.Despoit)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ToRentProperty.Despoit)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ToRentProperty.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ToRentProperty.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ToRentProperty.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ToRentProperty.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ToRentProperty.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ToRentProperty.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.ToRentProperty?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

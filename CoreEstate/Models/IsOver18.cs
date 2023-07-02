@@ -6,18 +6,18 @@ namespace CoreEstate.Models
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            var customer = (WebUser) validationContext.ObjectInstance;
+            var user = (WebUser) validationContext.ObjectInstance;
 
-            if (customer.Birthdate == null)
+            if (user.Birthdate == null)
             {
                 return new ValidationResult("Birthdate is required to book a viewing.");
             }
 
-            var age = DateTime.Today.Year - customer.Birthdate.Value.Year;
+            var age = DateTime.Today.Year - user.Birthdate.Value.Year;
 
             return age >= 18
                 ? ValidationResult.Success
-                : new ValidationResult("Customer needs to be 18+ years old to book a viewing.");
+                : new ValidationResult("User needs to be 18+ years old to book a viewing.");
         }
     }
 }
