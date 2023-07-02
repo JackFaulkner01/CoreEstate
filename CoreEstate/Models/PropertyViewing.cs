@@ -25,7 +25,7 @@ namespace CoreEstate.Models
 
         public ToRentProperty? ToRentProperty { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:mm:hh dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
 

@@ -1,0 +1,41 @@
+﻿@page "{id:int}"
+@model CoreEstate.Pages.ForSale.RequestModel
+
+@{
+    ViewData["Title"] = "Request";
+}
+
+<h1>Request</h1>
+
+<div>
+    <h4>ForSaleProperty</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ForSaleProperty.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ForSaleProperty.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ForSaleProperty.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ForSaleProperty.Address)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <div class="mb-3">
+            <label asp-for="PropertyViewing.Date" class="form-label"></label>
+            <input asp-for="PropertyViewing.Date" class="form-control" />
+            <span asp-validation-for="PropertyViewing.Date" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="mb-3">
+            <input type="submit" value="Request Viewing" class="btn btn-outline-primary" />
+        </div>
+    </form>
+
+    <a asp-page="./Details" asp-route-id="@Model.ForSaleProperty.Id">Back to Details</a>
+</div>

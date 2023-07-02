@@ -1,5 +1,6 @@
 ﻿@page "{id:int}"
 @model CoreEstate.Pages.ForSale.DetailsModel
+@using CoreEstate.Models
 
 @{
     ViewData["Title"] = "Details";
@@ -43,7 +44,23 @@
         </dd>
     </dl>
 </div>
+
+@if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    @if (User.IsInRole(RoleName.IsPropertyManager))
+    {
+        <div>
+            <a asp-page="./Viewings" asp-route-id="@Model.ForSaleProperty.Id">Viewings</a>
+        </div>
+    }
+    else
+    {
+        <div>
+            <a asp-page="./Request" asp-route-id="@Model.ForSaleProperty.Id">Request Viewing</a>
+        </div>
+    }
+}
+
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.ForSaleProperty?.Id">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>

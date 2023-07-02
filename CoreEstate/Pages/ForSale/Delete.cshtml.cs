@@ -15,15 +15,15 @@ namespace CoreEstate.Pages.ForSale
     [Authorize(Roles = RoleName.IsPropertyManager)]
     public class DeleteModel : PageModel
     {
-        private readonly CoreEstate.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DeleteModel(CoreEstate.Data.ApplicationDbContext context)
+        public DeleteModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-      public ForSaleProperty ForSaleProperty { get; set; } = default!;
+        public ForSaleProperty ForSaleProperty { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

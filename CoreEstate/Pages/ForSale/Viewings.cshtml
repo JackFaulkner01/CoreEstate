@@ -1,0 +1,52 @@
+﻿@page "{id:int}"
+@model CoreEstate.Pages.ForSale.ViewingsModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyViewings[0].ForSaleProperty.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyViewings[0].ForSaleProperty.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyViewings[0].User.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyViewings[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyViewings[0].Confirmed)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PropertyViewings)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ForSaleProperty.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ForSaleProperty.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Confirmed)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

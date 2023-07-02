@@ -8,37 +8,36 @@ using Microsoft.EntityFrameworkCore;
 using CoreEstate.Data;
 using CoreEstate.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace CoreEstate.Pages.ToRent
 {
-    [AllowAnonymous]
-    public class DetailsModel : PageModel
+    [Authorize(Roles = RoleName.IsPropertyManager)]
+    public class ViewingsModel : PageModel
     {
         private readonly ApplicationDbContext _context;
 
-        public DetailsModel(ApplicationDbContext context)
+        public ViewingsModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
-      public ToRentProperty ToRentProperty { get; set; } = default!; 
+        public IList<PropertyViewing> PropertyViewings { get;set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.ToRentProperties == null)
+            if (id == null || _context.PropertyViewings == null)
             {
                 return NotFound();
             }
 
-            var toRentProperty = await _context.ToRentProperties.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (toRentProperty == null)
+            if (_context.PropertyViewings != null)
             {
-                return NotFound();
-            }
-            else 
-            {
-                ToRentProperty = toRentProperty;
+                PropertyViewings = await _context.PropertyViewings
+                    .Where(v => v.ToRentPropertyId == id)
+                    .Include(v => v.ToRentProperty)
+                    .Include(v => v.User)
+                    .ToListAsync();
             }
 
             return Page();
