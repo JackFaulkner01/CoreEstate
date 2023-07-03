@@ -36,10 +36,8 @@ namespace CoreEstate.Pages.ToRent
             {
                 return NotFound();
             }
-            else 
-            {
-                ToRentProperty = toRentProperty;
-            }
+
+            ToRentProperty = toRentProperty;
 
             return Page();
         }

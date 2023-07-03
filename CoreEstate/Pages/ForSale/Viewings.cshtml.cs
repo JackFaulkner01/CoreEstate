@@ -31,14 +31,11 @@ namespace CoreEstate.Pages.ForSale
                 return NotFound();
             }
 
-            if (_context.PropertyViewings != null)
-            {
-                PropertyViewings = await _context.PropertyViewings
-                    .Where(v => v.ForSalePropertyId == id)
-                    .Include(v => v.ForSaleProperty)
-                    .Include(v => v.User)
-                    .ToListAsync();
-            }
+            PropertyViewings = await _context.PropertyViewings
+                .Where(v => v.ForSalePropertyId == id)
+                .Include(v => v.ForSaleProperty)
+                .Include(v => v.User)
+                .ToListAsync();
 
             return Page();
         }

@@ -36,11 +36,9 @@ namespace CoreEstate.Pages.ForSale
             {
                 return NotFound();
             }
-            else 
-            {
-                ForSaleProperty = forsaleproperty;
-            }
 
+            ForSaleProperty = forsaleproperty;
+            
             return Page();
         }
     }

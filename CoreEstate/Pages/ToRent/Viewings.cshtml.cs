@@ -31,14 +31,11 @@ namespace CoreEstate.Pages.ToRent
                 return NotFound();
             }
 
-            if (_context.PropertyViewings != null)
-            {
-                PropertyViewings = await _context.PropertyViewings
-                    .Where(v => v.ToRentPropertyId == id)
-                    .Include(v => v.ToRentProperty)
-                    .Include(v => v.User)
-                    .ToListAsync();
-            }
+            PropertyViewings = await _context.PropertyViewings
+                .Where(v => v.ToRentPropertyId == id)
+                .Include(v => v.ToRentProperty)
+                .Include(v => v.User)
+                .ToListAsync();
 
             return Page();
         }

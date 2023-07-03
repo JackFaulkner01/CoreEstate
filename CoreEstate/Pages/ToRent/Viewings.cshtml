@@ -32,7 +32,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ToRentProperty.Name)
+                    <a asp-page="./ConfirmViewing" asp-route-id="@item.Id">@item.ToRentProperty.Name</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ToRentProperty.Address)
