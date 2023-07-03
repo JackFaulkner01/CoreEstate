@@ -12,7 +12,6 @@ namespace CoreEstate.Models
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
-        [IsOver18]
         public DateTime? Birthdate { get; set; }
     }
 }
