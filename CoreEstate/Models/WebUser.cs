@@ -5,7 +5,6 @@ namespace CoreEstate.Models
 {
     public class WebUser : IdentityUser
     {
-        [Display(Name = "User Name")]
         [StringLength(60, MinimumLength = 3)]
         [Required]
         public required string Name { get; set; }

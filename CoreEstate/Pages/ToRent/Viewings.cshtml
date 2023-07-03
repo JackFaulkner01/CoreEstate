@@ -2,20 +2,17 @@
 @model CoreEstate.Pages.ToRent.ViewingsModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Viewings for " + Model.PropertyViewings[0].ToRentProperty.Name + " To Rent";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
+<hr />
+
+<h3>@Model.PropertyViewings[0].ToRentProperty.Address</h3>
 
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PropertyViewings[0].ToRentProperty.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PropertyViewings[0].ToRentProperty.Address)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.PropertyViewings[0].User.Name)
             </th>
@@ -32,13 +29,7 @@
         {
             <tr>
                 <td>
-                    <a asp-page="./ConfirmViewing" asp-route-id="@item.Id">@item.ToRentProperty.Name</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ToRentProperty.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Name)
+                    <a asp-page="./ConfirmViewing" asp-route-id="@item.Id">@item.User.Name</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)

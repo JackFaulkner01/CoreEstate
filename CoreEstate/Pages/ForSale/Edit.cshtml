@@ -2,13 +2,12 @@
 @model CoreEstate.Pages.ForSale.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Update For Sale Property";
 }
 
-<h1>Edit</h1>
-
-<h4>ForSaleProperty</h4>
+<h1>@ViewData["Title"]</h1>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -18,10 +17,10 @@
                 <input asp-for="ForSaleProperty.Price" class="form-control" />
                 <span asp-validation-for="ForSaleProperty.Price" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="ForSaleProperty.IsFreehold" /> @Html.DisplayNameFor(model => model.ForSaleProperty.IsFreehold)
-                </label>
+            <div class="form-group">
+                <label asp-for="ForSaleProperty.IsFreehold" class="form-check-label"></label>
+                <input asp-for="ForSaleProperty.IsFreehold" class="form-check-input" />
+                <span asp-validation-for="ForSaleProperty.IsFreehold" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="ForSaleProperty.Id" />
             <div class="form-group">

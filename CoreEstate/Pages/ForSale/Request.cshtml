@@ -2,14 +2,13 @@
 @model CoreEstate.Pages.ForSale.RequestModel
 
 @{
-    ViewData["Title"] = "Request";
+    ViewData["Title"] = "Request Viewing of " + Model.ForSaleProperty.Name + " For Sale";
 }
 
-<h1>Request</h1>
+<h1>@ViewData["Title"]</h1>
+<hr />
 
 <div>
-    <h4>ForSaleProperty</h4>
-    <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ForSaleProperty.Name)

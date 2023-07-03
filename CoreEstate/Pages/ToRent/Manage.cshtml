@@ -2,14 +2,16 @@
 @model CoreEstate.Pages.ToRent.ManageModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "To Rent Properties";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
+<hr />
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Add New To Rent Property</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>

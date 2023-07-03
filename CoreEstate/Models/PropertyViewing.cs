@@ -25,10 +25,12 @@ namespace CoreEstate.Models
 
         public ToRentProperty? ToRentProperty { get; set; }
 
+        [Display(Name = "Viewing Date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Viewing Confirmed")]
         public bool Confirmed { get; set; }
     }
 }

@@ -7,6 +7,7 @@ namespace CoreEstate.Models
         [Key]
         public int Id { get; set; }
 
+        [Display(Name = "Property Listing")]
         [StringLength(30, MinimumLength = 8)]
         [Required]
         public required string Name { get; set; }
