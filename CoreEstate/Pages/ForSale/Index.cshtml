@@ -2,52 +2,52 @@
 @model CoreEstate.Pages.ForSale.IndexModel
 
 @{
-    ViewData["Title"] = "For Sale Properties";
+    ViewData["Title"] = "For sale properties";
 }
 
 <h1>@ViewData["Title"]</h1>
 <hr />
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ForSaleProperties[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ForSaleProperties[0].IsFreehold)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ForSaleProperties[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ForSaleProperties[0].Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ForSaleProperties[0].Description)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.ForSaleProperties)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsFreehold)
-                </td>
-                <td>
-                    <a asp-page="./Details" asp-route-id="@item.Id">@item.Name</a>
-                </td>
-                <td>
+@foreach (var item in Model.ForSaleProperties)
+{
+    <div class="card">
+        <a asp-page="./Details" asp-route-id="@item.Id">
+            <div class="card-header">
+                @Html.DisplayFor(modelItem => item.Name) for sale
+            </div>
+        </a>
+        <div class="card-body">
+            <div class="card-left">
+                <a asp-page="./Details" asp-route-id="@item.Id">
+                    IMAGE
+                </a>
+            </div>
+            <div class="card-right">
+                <h5 class="card-subtitle">
+                    @Html.DisplayNameFor(model => model.ForSaleProperties[0].Price)
+                </h5>
+                <h3 class="card-title">
+                    £@Html.DisplayFor(modelItem => item.Price)
+                </h3>
+                <h6 class="card-text">
                     @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
+                </h6>
+                <p class="card-text">
                     @Html.DisplayFor(modelItem => item.Description)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                </p>
+                @if (item.IsFreehold)
+                {
+                    <p class="card-text fw-light">
+                        Freehold Property
+                    </p>
+                }
+                else
+                {
+                    <p class="card-text fw-light">
+                        Leasehold Property
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
+}

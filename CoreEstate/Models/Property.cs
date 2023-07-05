@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace CoreEstate.Models
 {
@@ -18,5 +19,7 @@ namespace CoreEstate.Models
 
         [Required]
         public required string Description { get; set; }
+
+        public ICollection<PropertyPhoto> Photos { get; set; } = new Collection<PropertyPhoto>();
     }
 }

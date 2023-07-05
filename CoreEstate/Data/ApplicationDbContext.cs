@@ -16,5 +16,7 @@ namespace CoreEstate.Data
         public DbSet<ToRentProperty> ToRentProperties { get; set; } = default!;
 
         public DbSet<PropertyViewing> PropertyViewings { get; set; } = default!;
+
+        public DbSet<PropertyPhoto> PropertyPhotos { get; set; } = default!;
     }
 }

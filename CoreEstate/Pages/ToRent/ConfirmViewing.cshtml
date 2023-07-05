@@ -2,11 +2,23 @@
 @model CoreEstate.Pages.ToRent.ConfirmViewingModel
 
 @{
-    ViewData["Title"] = "Confirm To Rent Viewing";
+    ViewData["Title"] = "Confirm to rent viewing";
 }
 
 <h1>@ViewData["Title"]</h1>
 <hr />
+
+<div class="icon-navigation">
+    <a asp-page="./Viewings" asp-route-id="@Model.PropertyViewing.ToRentPropertyId">
+        <div class="icon-navigation-icon">
+            <i data-fa-symbol="back-arrow" class="fa-solid fa-arrow-left"></i>
+            <svg class="icon"><use href="#back-arrow"></use></svg>
+        </div>
+        <div class="icon-navigation-text">
+            Back to viewings
+        </div>
+    </a>
+</div>
 
 <div>
     <dl class="row">
@@ -48,7 +60,7 @@
             </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-outline-primary" />
             </div>
         </form>
     </div>

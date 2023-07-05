@@ -2,15 +2,23 @@
 @model CoreEstate.Pages.ToRent.ManageModel
 
 @{
-    ViewData["Title"] = "To Rent Properties";
+    ViewData["Title"] = "To rent properties";
 }
 
 <h1>@ViewData["Title"]</h1>
 <hr />
 
-<p>
-    <a asp-page="Create">Add New To Rent Property</a>
-</p>
+<div class="icon-navigation">
+    <a asp-page="./Create">
+        <div class="icon-navigation-icon">
+            <i data-fa-symbol="add-plus" class="fa-solid fa-plus"></i>
+            <svg class="icon"><use href="#add-plus"></use></svg>
+        </div>
+        <div class="icon-navigation-text">
+            Add new to rent property
+        </div>
+    </a>
+</div>
 
 <table class="table">
     <thead>
@@ -55,8 +63,9 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary">Edit</a>
+                    &nbsp;
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-outline-secondary">Delete</a>
                 </td>
             </tr>
         }

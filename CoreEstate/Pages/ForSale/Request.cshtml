@@ -2,11 +2,23 @@
 @model CoreEstate.Pages.ForSale.RequestModel
 
 @{
-    ViewData["Title"] = "Request Viewing of " + Model.ForSaleProperty.Name + " For Sale";
+    ViewData["Title"] = "Request viewing of " + Model.ForSaleProperty.Name + " for sale";
 }
 
 <h1>@ViewData["Title"]</h1>
 <hr />
+
+<div class="icon-navigation">
+    <a asp-page="./Details" asp-route-id="@Model.ForSaleProperty.Id">
+        <div class="icon-navigation-icon">
+            <i data-fa-symbol="back-arrow" class="fa-solid fa-arrow-left"></i>
+            <svg class="icon"><use href="#back-arrow"></use></svg>
+        </div>
+        <div class="icon-navigation-text">
+            Back to property details
+        </div>
+    </a>
+</div>
 
 <div>
     <dl class="row">
@@ -35,6 +47,4 @@
             <input type="submit" value="Request Viewing" class="btn btn-outline-primary" />
         </div>
     </form>
-
-    <a asp-page="./Details" asp-route-id="@Model.ForSaleProperty.Id">Back to Details</a>
 </div>

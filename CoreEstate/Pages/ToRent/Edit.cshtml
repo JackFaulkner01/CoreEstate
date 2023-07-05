@@ -2,11 +2,23 @@
 @model CoreEstate.Pages.ToRent.EditModel
 
 @{
-    ViewData["Title"] = "Update To Rent Property";
+    ViewData["Title"] = "Update to rent property";
 }
 
 <h1>@ViewData["Title"]</h1>
 <hr />
+
+<div class="icon-navigation">
+    <a asp-page="./Index">
+        <div class="icon-navigation-icon">
+            <i data-fa-symbol="back-arrow" class="fa-solid fa-arrow-left"></i>
+            <svg class="icon"><use href="#back-arrow"></use></svg>
+        </div>
+        <div class="icon-navigation-text">
+            Back to property results
+        </div>
+    </a>
+</div>
 
 <div class="row">
     <div class="col-md-4">
@@ -39,14 +51,10 @@
                 <span asp-validation-for="ToRentProperty.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-outline-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {

@@ -2,11 +2,23 @@
 @model CoreEstate.Pages.ForSale.ViewingsModel
 
 @{
-    ViewData["Title"] = "Viewings for " + Model.PropertyViewings[0].ForSaleProperty.Name + " For Sale";
+    ViewData["Title"] = "Viewings for " + Model.PropertyViewings[0].ForSaleProperty.Name + " for sale";
 }
 
 <h1>@ViewData["Title"]</h1>
 <hr />
+
+<div class="icon-navigation">
+    <a asp-page="./Details" asp-route-id="@Model.PropertyViewings[0].ForSaleProperty.Id">
+        <div class="icon-navigation-icon">
+            <i data-fa-symbol="back-arrow" class="fa-solid fa-arrow-left"></i>
+            <svg class="icon"><use href="#back-arrow"></use></svg>
+        </div>
+        <div class="icon-navigation-text">
+            Back to property details
+        </div>
+    </a>
+</div>
 
 <h3>@Model.PropertyViewings[0].ForSaleProperty.Address</h3>
 
