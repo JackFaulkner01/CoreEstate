@@ -2,8 +2,6 @@
 using CoreEstate.Dtos;
 using CoreEstate.Models;
 using Microsoft.AspNetCore.Mvc;
-using SixLabors.ImageSharp;
-using System.IO;
 
 namespace CoreEstate.Controllers.Api
 {

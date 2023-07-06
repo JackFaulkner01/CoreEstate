@@ -15,11 +15,13 @@ namespace CoreEstate.Pages.ToRent
     [Authorize(Roles = RoleName.IsPropertyManager)]
     public class DeleteModel : PageModel
     {
-        private readonly CoreEstate.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _host;
 
-        public DeleteModel(CoreEstate.Data.ApplicationDbContext context)
+        public DeleteModel(ApplicationDbContext context, IWebHostEnvironment host)
         {
             _context = context;
+            _host = host;
         }
 
         [BindProperty]
@@ -32,16 +34,17 @@ namespace CoreEstate.Pages.ToRent
                 return NotFound();
             }
 
-            var torentproperty = await _context.ToRentProperties.FirstOrDefaultAsync(m => m.Id == id);
+            var toRentPreoperty = await _context.ToRentProperties.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (torentproperty == null)
+            if (toRentPreoperty == null)
             {
                 return NotFound();
             }
             else 
             {
-                ToRentProperty = torentproperty;
+                ToRentProperty = toRentPreoperty;
             }
+
             return Page();
         }
 
@@ -51,14 +54,33 @@ namespace CoreEstate.Pages.ToRent
             {
                 return NotFound();
             }
-            var torentproperty = await _context.ToRentProperties.FindAsync(id);
 
-            if (torentproperty != null)
+            var toRentPreoperty = await _context.ToRentProperties
+                .Include(p => p.Photos)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (toRentPreoperty == null)
             {
-                ToRentProperty = torentproperty;
-                _context.ToRentProperties.Remove(ToRentProperty);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
+
+            ToRentProperty = toRentPreoperty;
+            var photos = ToRentProperty.Photos;
+            var uploadsFolder = Path.Combine(_host.WebRootPath, "uploads");
+
+            foreach (var photo in photos)
+            {
+                if (photo.Filename != null)
+                {
+                    System.IO.File.Delete(Path.Combine(uploadsFolder, photo.Filename));
+                }
+            }
+
+            var propertyViewings = await _context.PropertyViewings.Where(p => p.ToRentPropertyId == id).ToListAsync();
+            _context.PropertyViewings.RemoveRange(propertyViewings);
+            _context.ToRentProperties.Remove(ToRentProperty);
+            _context.PropertyPhotos.RemoveRange(photos);
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
