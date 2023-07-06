@@ -20,8 +20,8 @@
     </a>
 </div>
 
-<div>
-    <dl class="row">
+<div class="row">
+    <dl>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ForSaleProperty.Name)
         </dt>
@@ -35,16 +35,21 @@
             @Html.DisplayFor(model => model.ForSaleProperty.Address)
         </dd>
     </dl>
+</div>
 
-    <form method="post">
-        <div class="mb-3">
-            <label asp-for="PropertyViewing.Date" class="form-label"></label>
-            <input asp-for="PropertyViewing.Date" class="form-control" />
-            <span asp-validation-for="PropertyViewing.Date" class="text-danger"></span>
-        </div>
-        <br />
-        <div class="mb-3">
-            <input type="submit" value="Request Viewing" class="btn btn-outline-primary" />
-        </div>
-    </form>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PropertyViewing.Date" class="form-label"></label>
+                <input asp-for="PropertyViewing.Date" class="form-control" />
+                <span asp-validation-for="PropertyViewing.Date" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Request Viewing" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
 </div>

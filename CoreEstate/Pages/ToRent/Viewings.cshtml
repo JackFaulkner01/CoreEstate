@@ -1,55 +1,63 @@
 ﻿@page "{id:int}"
 @model CoreEstate.Pages.ToRent.ViewingsModel
 
-@{
+@if (Model.PropertyViewings.Count > 0)
+{
     ViewData["Title"] = "Viewings for " + Model.PropertyViewings[0].ToRentProperty.Name + " to rent";
-}
 
-<h1>@ViewData["Title"]</h1>
-<hr />
+    <h1>@ViewData["Title"]</h1>
+    <hr />
 
-<div class="icon-navigation">
-    <a asp-page="./Details" asp-route-id="@Model.PropertyViewings[0].ToRentProperty.Id">
-        <div class="icon-navigation-icon">
-            <i data-fa-symbol="back-arrow" class="fa-solid fa-arrow-left"></i>
-            <svg class="icon"><use href="#back-arrow"></use></svg>
-        </div>
-        <div class="icon-navigation-text">
-            Back to property details
-        </div>
-    </a>
-</div>
+    <div class="icon-navigation">
+        <a asp-page="./Details" asp-route-id="@Model.PropertyViewings[0].ToRentProperty.Id">
+            <div class="icon-navigation-icon">
+                <i data-fa-symbol="back-arrow" class="fa-solid fa-arrow-left"></i>
+                <svg class="icon"><use href="#back-arrow"></use></svg>
+            </div>
+            <div class="icon-navigation-text">
+                Back to property details
+            </div>
+        </a>
+    </div>
 
-<h3>@Model.PropertyViewings[0].ToRentProperty.Address</h3>
+    <h3>@Model.PropertyViewings[0].ToRentProperty.Address</h3>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PropertyViewings[0].User.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PropertyViewings[0].Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PropertyViewings[0].Confirmed)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.PropertyViewings)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    <a asp-page="./ConfirmViewing" asp-route-id="@item.Id">@item.User.Name</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Confirmed)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.PropertyViewings[0].User.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PropertyViewings[0].Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PropertyViewings[0].Confirmed)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PropertyViewings)
+            {
+                <tr>
+                    <td>
+                        <a asp-page="./ConfirmViewing" asp-route-id="@item.Id">@item.User.Name</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Confirmed)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    ViewData["Title"] = "No viewings yet";
+
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+}
