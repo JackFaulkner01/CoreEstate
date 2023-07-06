@@ -2,6 +2,8 @@
 using CoreEstate.Dtos;
 using CoreEstate.Models;
 using Microsoft.AspNetCore.Mvc;
+using SixLabors.ImageSharp;
+using System.IO;
 
 namespace CoreEstate.Controllers.Api
 {
@@ -23,7 +25,6 @@ namespace CoreEstate.Controllers.Api
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> PostForSalePhoto([FromForm] PropertyPhotoDto propertyPhotoDto)
         {
-            await Console.Out.WriteLineAsync("PostForSalePhoto:" + propertyPhotoDto.PropertyId);
             if (_context.PropertyPhotos == null || _context.ForSaleProperties == null)
             {
                 return Problem("Entity set 'ApplicationDbContext' is null.");
@@ -43,22 +44,24 @@ namespace CoreEstate.Controllers.Api
                 Directory.CreateDirectory(uploadsFolder);
             }
 
-            await Console.Out.WriteLineAsync("Copy for sale photo");
             var filename = Guid.NewGuid().ToString() + Path.GetExtension(propertyPhotoDto.File.FileName);
             var filePath = Path.Combine(uploadsFolder, filename);
 
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await propertyPhotoDto.File.CopyToAsync(stream);
-            }
+            //using (var stream = new FileStream(filePath, FileMode.Create))
+            //{
+            //    await propertyPhotoDto.File.CopyToAsync(stream);
+            //}
 
-            await Console.Out.WriteLineAsync("Create new PropertyPhoto");
+            using var image = Image.Load(propertyPhotoDto.File.OpenReadStream());
+            image.Mutate(x => x.Resize(948, 598));
+            image.Save(filePath);
+
             var propertyPhoto = new PropertyPhoto { Filename = filename };
             forSaleProperty.Photos.Add(propertyPhoto);
             await _context.PropertyPhotos.AddAsync(propertyPhoto);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/Index");
+            return RedirectToPage("/ForSale/Edit", new { id = forSaleProperty.Id });
         }
     }
 }

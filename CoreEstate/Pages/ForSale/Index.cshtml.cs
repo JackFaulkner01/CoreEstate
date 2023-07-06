@@ -32,7 +32,9 @@ namespace CoreEstate.Pages.ForSale
 
             if (_context.ForSaleProperties != null)
             {
-                ForSaleProperties = await _context.ForSaleProperties.ToListAsync();
+                ForSaleProperties = await _context.ForSaleProperties
+                    .Include(p => p.Photos)
+                    .ToListAsync();
             }
 
             return Page();

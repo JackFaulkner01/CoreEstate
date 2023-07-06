@@ -95,9 +95,16 @@ a, a:hover, a:active, a:visited, a:link {
 .card-left {
     float: left;
     width: 50%;
+    padding-right: 16px;
 }
 
 .card-right {
     float: left;
     width: 50%;
+    padding-right: 16px;
+}
+
+#propertyPhotosCarousel {
+    max-height: 598px;
+    margin-bottom: 16px;
 }

@@ -30,7 +30,9 @@ namespace CoreEstate.Pages.ForSale
                 return NotFound();
             }
 
-            var forsaleproperty = await _context.ForSaleProperties.FirstOrDefaultAsync(m => m.Id == id);
+            var forsaleproperty = await _context.ForSaleProperties
+                .Include(p => p.Photos)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (forsaleproperty == null)
             {

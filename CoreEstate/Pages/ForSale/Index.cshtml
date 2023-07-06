@@ -19,12 +19,19 @@
         <div class="card-body">
             <div class="card-left">
                 <a asp-page="./Details" asp-route-id="@item.Id">
-                    IMAGE
+                    @if (item.Photos.Count > 0)
+                    {
+                        <img class="img-fluid rounded" src="~/uploads/@item.Photos.ElementAtOrDefault(0).Filename" />
+                    }
+                    else
+                    {
+                        <p>IMAGE</p>
+                    }
                 </a>
             </div>
             <div class="card-right">
                 <h5 class="card-subtitle">
-                    @Html.DisplayNameFor(model => model.ForSaleProperties[0].Price)
+                    @Html.DisplayNameFor(modelItem => item.Price)
                 </h5>
                 <h3 class="card-title">
                     £@Html.DisplayFor(modelItem => item.Price)
