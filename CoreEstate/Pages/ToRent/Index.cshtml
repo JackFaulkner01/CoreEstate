@@ -39,9 +39,7 @@
                 <h6 class="card-text">
                     @Html.DisplayFor(modelItem => item.Address)
                 </h6>
-                <p class="card-text">
-                    @Html.DisplayFor(modelItem => item.Description)
-                </p>
+                <span class="propertyDescription card-text">@Html.DisplayFor(modelItem => item.Description)</span>
                 <p class="card-text fw-light">
                     @Html.DisplayNameFor(modelItem => item.Despoit)
                 </p>
@@ -51,4 +49,23 @@
             </div>
         </div>
     </div>
+}
+
+@section scripts
+{
+    <script>
+        const PROPERTY_DESCRIPTION_LENGTH = 384;
+
+        $(document).ready(function () {
+            $('.propertyDescription').each(function () {
+                var descriptionText = $(this).text()
+                if (descriptionText.length > PROPERTY_DESCRIPTION_LENGTH) {
+                    var lastSpace = descriptionText.indexOf(" ", PROPERTY_DESCRIPTION_LENGTH);
+                    if (lastSpace > 0) {
+                        $(this).text($(this).text().substring(0, lastSpace) + " ...");
+                    }
+                }
+            });
+        });
+    </script>
 }
