@@ -48,18 +48,12 @@ namespace CoreEstate.Models
                 if (!context.ForSaleProperties.Any())
                 {
                     // Database has not been seeded with for sale properties.
-                    context.ForSaleProperties.AddRange(
-                        new ForSaleProperty { Name = "", Address = "", Description = "", Price = 0, IsFreehold = true }
-                    );
                 }
 
                 // Look for any to rent properties.
                 if (!context.ToRentProperties.Any())
                 {
                     // Database has not been seeded with to rent properties.
-                    context.ToRentProperties.AddRange(
-                        new ToRentProperty { Name = "", Address = "", Description = "", Rent = 0, Despoit = 0 }
-                    );
                 }
 
                 context.SaveChanges();
