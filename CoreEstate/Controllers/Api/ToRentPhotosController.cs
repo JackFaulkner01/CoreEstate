@@ -9,30 +9,30 @@ namespace CoreEstate.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ForSalePhotosController : ControllerBase
+    public class ToRentPhotosController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _host;
 
-        public ForSalePhotosController(ApplicationDbContext context, IWebHostEnvironment host)
+        public ToRentPhotosController(ApplicationDbContext context, IWebHostEnvironment host)
         {
             _context = context;
             _host = host;
         }
 
-        // POST: api/ForSalePhotos
+        // POST: api/ToRentPhotos
         [HttpPost]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> PostForSalePhoto([FromForm] PropertyPhotoDto propertyPhotoDto)
+        public async Task<IActionResult> PostToRentPhoto([FromForm] PropertyPhotoDto propertyPhotoDto)
         {
-            if (_context.PropertyPhotos == null || _context.ForSaleProperties == null)
+            if (_context.PropertyPhotos == null || _context.ToRentProperties == null)
             {
                 return Problem("Entity set 'ApplicationDbContext' is null.");
             }
 
-            var forSaleProperty = await _context.ForSaleProperties.FindAsync(propertyPhotoDto.PropertyId);
+            var toRentProperty = await _context.ToRentProperties.FindAsync(propertyPhotoDto.PropertyId);
 
-            if (forSaleProperty == null)
+            if (toRentProperty == null)
             {
                 return NotFound();
             }
@@ -52,11 +52,11 @@ namespace CoreEstate.Controllers.Api
             image.Save(filePath);
 
             var propertyPhoto = new PropertyPhoto { Filename = filename };
-            forSaleProperty.Photos.Add(propertyPhoto);
+            toRentProperty.Photos.Add(propertyPhoto);
             await _context.PropertyPhotos.AddAsync(propertyPhoto);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/ForSale/Edit", new { id = forSaleProperty.Id });
+            return RedirectToPage("/ToRent/Edit", new { id = toRentProperty.Id });
         }
     }
 }

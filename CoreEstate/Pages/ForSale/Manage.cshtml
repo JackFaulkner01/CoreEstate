@@ -60,7 +60,7 @@
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    <span class="propertyDescription">@Html.DisplayFor(modelItem => item.Description)</span>
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary">Edit</a>
@@ -71,3 +71,22 @@
         }
     </tbody>
 </table>
+
+@section scripts
+{
+    <script>
+        const PROPERTY_DESCRIPTION_LENGTH = 128;
+
+        $(document).ready(function () {
+            $('.propertyDescription').each(function () {
+                var descriptionText = $(this).text()
+                if (descriptionText.length > PROPERTY_DESCRIPTION_LENGTH) {
+                    var lastSpace = descriptionText.indexOf(" ", PROPERTY_DESCRIPTION_LENGTH);
+                    if (lastSpace > 0) {
+                        $(this).text($(this).text().substring(0, lastSpace) + " ...");
+                    }
+                }
+            });
+        });
+    </script>
+}

@@ -16,9 +16,9 @@ namespace CoreEstate.Pages.ToRent
     [Authorize(Roles = RoleName.IsPropertyManager)]
     public class EditModel : PageModel
     {
-        private readonly CoreEstate.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public EditModel(CoreEstate.Data.ApplicationDbContext context)
+        public EditModel(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -34,10 +34,12 @@ namespace CoreEstate.Pages.ToRent
             }
 
             var torentproperty =  await _context.ToRentProperties.FirstOrDefaultAsync(m => m.Id == id);
+
             if (torentproperty == null)
             {
                 return NotFound();
             }
+
             ToRentProperty = torentproperty;
             return Page();
         }

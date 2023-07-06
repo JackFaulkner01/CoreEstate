@@ -21,7 +21,7 @@ namespace CoreEstate.Pages.ToRent
             _context = context;
         }
 
-      public ToRentProperty ToRentProperty { get; set; } = default!; 
+        public ToRentProperty ToRentProperty { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,7 +30,9 @@ namespace CoreEstate.Pages.ToRent
                 return NotFound();
             }
 
-            var toRentProperty = await _context.ToRentProperties.FirstOrDefaultAsync(m => m.Id == id);
+            var toRentProperty = await _context.ToRentProperties
+                .Include(p => p.Photos)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (toRentProperty == null)
             {

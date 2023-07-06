@@ -8,46 +8,47 @@
 <h1>@ViewData["Title"]</h1>
 <hr />
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ToRentProperties[0].Rent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ToRentProperties[0].Despoit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ToRentProperties[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ToRentProperties[0].Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ToRentProperties[0].Description)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.ToRentProperties)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rent)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Despoit)
-                </td>
-                <td>
-                    <a asp-page="./Details" asp-route-id="@item.Id">@item.Name</a>
-                </td>
-                <td>
+@foreach (var item in Model.ToRentProperties)
+{
+    <div class="card">
+        <a asp-page="./Details" asp-route-id="@item.Id">
+            <div class="card-header">
+                @Html.DisplayFor(modelItem => item.Name) for sale
+            </div>
+        </a>
+        <div class="card-body">
+            <div class="card-left">
+                <a asp-page="./Details" asp-route-id="@item.Id">
+                    @if (item.Photos.Count > 0)
+                    {
+                        <img class="img-fluid rounded" src="~/uploads/@item.Photos.ElementAtOrDefault(0).Filename" />
+                    }
+                    else
+                    {
+                        <img class="img-fluid rounded" src="~/uploads/no-image-available.png" />
+                    }
+                </a>
+            </div>
+            <div class="card-right">
+                <h5 class="card-subtitle">
+                    @Html.DisplayNameFor(modelItem => item.Rent)
+                </h5>
+                <h3 class="card-title">
+                    £@Html.DisplayFor(modelItem => item.Rent)
+                </h3>
+                <h6 class="card-text">
                     @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
+                </h6>
+                <p class="card-text">
                     @Html.DisplayFor(modelItem => item.Description)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                </p>
+                <p class="card-text fw-light">
+                    @Html.DisplayNameFor(modelItem => item.Despoit)
+                </p>
+                <p class="card-text fw-light">
+                    @Html.DisplayFor(modelItem => item.Despoit)
+                </p>
+            </div>
+        </div>
+    </div>
+}

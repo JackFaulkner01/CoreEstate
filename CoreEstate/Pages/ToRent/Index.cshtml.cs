@@ -14,9 +14,9 @@ namespace CoreEstate.Pages.ToRent
     [AllowAnonymous]
     public class IndexModel : PageModel
     {
-        private readonly CoreEstate.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public IndexModel(CoreEstate.Data.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -32,7 +32,9 @@ namespace CoreEstate.Pages.ToRent
 
             if (_context.ToRentProperties != null)
             {
-                ToRentProperties = await _context.ToRentProperties.ToListAsync();
+                ToRentProperties = await _context.ToRentProperties
+                    .Include(p => p.Photos)
+                    .ToListAsync();
             }
 
             return Page();

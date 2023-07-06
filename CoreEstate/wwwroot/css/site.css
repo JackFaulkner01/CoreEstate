@@ -27,6 +27,10 @@ a, a:hover, a:active, a:visited, a:link {
     color: #212529;
 }
 
+span {
+    white-space: pre-line;
+}
+
 .btn-outline-primary {
     font-weight: 600;
     color: #212529;

@@ -34,11 +34,14 @@ namespace CoreEstate.Pages.ForSale
             }
 
             var forsaleproperty =  await _context.ForSaleProperties.FirstOrDefaultAsync(m => m.Id == id);
+
             if (forsaleproperty == null)
             {
                 return NotFound();
             }
+
             ForSaleProperty = forsaleproperty;
+
             return Page();
         }
 
