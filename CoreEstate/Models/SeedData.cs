@@ -78,6 +78,22 @@ namespace CoreEstate.Models
                         }
                     }
                 }
+
+                userExists = await userManager.GetUsersInRoleAsync(RoleName.IsPropertyManager);
+
+                if (userExists.Count() < 1)
+                {
+                    var user = new WebUser { UserName = "jackjoshua.faulkner@gmail.com", Email = "jackjoshua.faulkner@gmail.com", Name = "Jack Faulkner", Birthdate = DateTime.Parse("2001-01-25") };
+                    context.Users.Add(user);
+                    context.SaveChanges();
+
+                    var res = await userManager.AddToRoleAsync(user, RoleName.IsPropertyManager);
+
+                    if (res.Succeeded)
+                    {
+                        await userManager.AddPasswordAsync(user, "k92$JBsX&TmeYtE755wP");
+                    }
+                }
             }
         }
     }
