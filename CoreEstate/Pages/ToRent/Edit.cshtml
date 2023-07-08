@@ -74,14 +74,13 @@
         </div>
     </div>
     <div class="tab-pane fade" id="photos-tab-pane" role="tabpanel" aria-labelledby="photos-tab" tabindex="0">
-        <h3>Photos</h3>
-        <p>Some content in photos.</p>
+        <h5>Upload property photos</h5>
         <br />
         <div class="col-md-4">
-            <form action="/api/ToRentPhotos" enctype="multipart/form-data" method="post">
+            <form action="/api/ToRentPhotosCollection" enctype="multipart/form-data" method="post">
                 <input type="hidden" name="propertyId" value="@Model.ToRentProperty.Id" />
                 <div class="form-group">
-                    <input type="file" name="file" class="form-control" />
+                    <input type="file" name="files" class="form-control" multiple />
                 </div>
                 <br />
                 <div class="form-group">
