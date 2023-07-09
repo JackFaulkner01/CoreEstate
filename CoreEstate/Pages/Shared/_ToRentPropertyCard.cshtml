@@ -1,0 +1,42 @@
+﻿@using CoreEstate.Models
+@model ToRentProperty
+
+<div class="card">
+    <a asp-page="/ToRent/Details" asp-route-id="@Model.Id">
+        <div class="card-header">
+            <h6 class="m-0 font-weight-bold">
+                @Html.DisplayFor(modelItem => Model.Name) to rent
+            </h6>
+        </div>
+    </a>
+    <div class="card-body">
+        <div class="card-left">
+            <a asp-page="/ToRent/Details" asp-route-id="@Model.Id">
+                @if (Model.Photos.Count > 0)
+                {
+                    <img class="img-fluid rounded" src="~/uploads/@Model.Photos.ElementAtOrDefault(0).Filename" />
+                }
+                else
+                {
+                    <img class="img-fluid rounded" src="~/uploads/no-image-available.png" />
+                }
+            </a>
+        </div>
+        <div class="card-right">
+            <h5 class="card-subtitle">
+                @Html.DisplayNameFor(modelItem => Model.Rent)
+            </h5>
+            <h3 class="card-title">
+                £@Html.DisplayFor(modelItem => Model.Rent)
+            </h3>
+            <h6 class="card-text">
+                @Html.DisplayFor(modelItem => Model.Address)
+            </h6>
+            <span class="propertyDescription card-text">@Html.DisplayFor(modelItem => Model.Description)</span>
+            <p class="card-text fw-light">
+                @Html.DisplayNameFor(modelItem => Model.Despoit)
+                @Html.DisplayFor(modelItem => Model.Despoit)
+            </p>
+        </div>
+    </div>
+</div>

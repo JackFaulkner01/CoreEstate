@@ -10,45 +10,7 @@
 
 @foreach (var item in Model.ToRentProperties)
 {
-    <div class="card">
-        <a asp-page="./Details" asp-route-id="@item.Id">
-            <div class="card-header">
-                <h6 class="m-0 font-weight-bold">
-                    @Html.DisplayFor(modelItem => item.Name) to rent
-                </h6>
-            </div>
-        </a>
-        <div class="card-body">
-            <div class="card-left">
-                <a asp-page="./Details" asp-route-id="@item.Id">
-                    @if (item.Photos.Count > 0)
-                    {
-                        <img class="img-fluid rounded" src="~/uploads/@item.Photos.ElementAtOrDefault(0).Filename" />
-                    }
-                    else
-                    {
-                        <img class="img-fluid rounded" src="~/uploads/no-image-available.png" />
-                    }
-                </a>
-            </div>
-            <div class="card-right">
-                <h5 class="card-subtitle">
-                    @Html.DisplayNameFor(modelItem => item.Rent)
-                </h5>
-                <h3 class="card-title">
-                    £@Html.DisplayFor(modelItem => item.Rent)
-                </h3>
-                <h6 class="card-text">
-                    @Html.DisplayFor(modelItem => item.Address)
-                </h6>
-                <span class="propertyDescription card-text">@Html.DisplayFor(modelItem => item.Description)</span>
-                <p class="card-text fw-light">
-                    @Html.DisplayNameFor(modelItem => item.Despoit)
-                    @Html.DisplayFor(modelItem => item.Despoit)
-                </p>
-            </div>
-        </div>
-    </div>
+    @await Html.PartialAsync("../Shared/_ToRentPropertyCard", item)
 }
 
 @section scripts

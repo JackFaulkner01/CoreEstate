@@ -1,0 +1,50 @@
+﻿@using CoreEstate.Models
+@model ForSaleProperty
+
+<div class="card">
+    <a asp-page="/ForSale/Details" asp-route-id="@Model.Id">
+        <div class="card-header">
+            <h6 class="m-0 font-weight-bold">
+                @Html.DisplayFor(modelItem => Model.Name) for sale
+            </h6>
+        </div>
+    </a>
+    <div class="card-body">
+        <div class="card-left">
+            <a asp-page="/ForSale/Details" asp-route-id="@Model.Id">
+                @if (Model.Photos.Count > 0)
+                {
+                    <img class="img-fluid rounded" src="~/uploads/@Model.Photos.ElementAtOrDefault(0).Filename" />
+                }
+                else
+                {
+                    <img class="img-fluid rounded" src="~/uploads/no-image-available.png" />
+                }
+            </a>
+        </div>
+        <div class="card-right">
+            <h5 class="card-subtitle">
+                @Html.DisplayNameFor(modelItem => Model.Price)
+            </h5>
+            <h3 class="card-title">
+                £@Html.DisplayFor(modelItem => Model.Price)
+            </h3>
+            <h6 class="card-text">
+                @Html.DisplayFor(modelItem => Model.Address)
+            </h6>
+            <span class="propertyDescription card-text">@Html.DisplayFor(modelItem => Model.Description)</span>
+            @if (Model.IsFreehold)
+            {
+                <p class="card-text fw-light">
+                    Freehold Property
+                </p>
+            }
+            else
+            {
+                <p class="card-text fw-light">
+                    Leasehold Property
+                </p>
+            }
+        </div>
+    </div>
+</div>

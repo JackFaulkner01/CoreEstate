@@ -4,6 +4,39 @@
     ViewData["Title"] = "Property search";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Core Estate</h1>
-</div>
+<h1>Latest properties for sale</h1>
+<hr />
+
+
+@foreach (var item in Model.ForSaleProperties)
+{
+    @await Html.PartialAsync("../Shared/_ForSalePropertyCard", item)
+}
+
+<h1>Latest properties to rent</h1>
+<hr />
+
+
+@foreach (var item in Model.ToRentProperties)
+{
+    @await Html.PartialAsync("../Shared/_ToRentPropertyCard", item)
+}
+
+@section scripts
+{
+    <script>
+        const PROPERTY_DESCRIPTION_LENGTH = 256;
+
+        $(document).ready(function () {
+            $('.propertyDescription').each(function () {
+                var descriptionText = $(this).text()
+                if (descriptionText.length > PROPERTY_DESCRIPTION_LENGTH) {
+                    var lastSpace = descriptionText.indexOf(" ", PROPERTY_DESCRIPTION_LENGTH);
+                    if (lastSpace > 0) {
+                        $(this).text($(this).text().substring(0, lastSpace) + " ...");
+                    }
+                }
+            });
+        });
+    </script>
+}
