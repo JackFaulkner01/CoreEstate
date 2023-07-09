@@ -366,3 +366,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /CoreEstate/appsettings.json
 /CoreEstate/appsettings.json
+/CoreEstate/Models/SeedData.cs
