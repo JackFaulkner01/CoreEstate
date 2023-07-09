@@ -150,7 +150,6 @@ span {
 .card-right {
     float: left;
     width: 50%;
-    padding-right: 16px;
 }
 
 .card-title {
@@ -188,4 +187,16 @@ span {
 .property-details-description {
     padding: 0 .75rem;
     font-weight: 400 !important;
+}
+
+@media (max-width: 768px) {
+    .card-left {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .card-right {
+        width: 100%;
+        margin-top: 16px;
+    }
 }
