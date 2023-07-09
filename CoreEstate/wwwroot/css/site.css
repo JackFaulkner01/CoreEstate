@@ -19,6 +19,8 @@ html {
 
 body {
     margin-bottom: 60px;
+    background: #f8f9fc;
+    font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 a, a:hover, a:active, a:visited, a:link {
@@ -31,40 +33,21 @@ span {
     white-space: pre-line;
 }
 
-.btn-outline-primary {
-    font-weight: 600;
-    color: #212529;
-    border-color: #6c757d;
-}
-
-.btn-outline-primary:hover {
-    color: #FFFFFF;
-    border-color: #6c757d;
-    background-color: #6c757d;
-}
-
-.btn-outline-secondary {
-    font-weight: 600;
-    color: #212529;
-    border-color: #D8618C;
-}
-
-.btn-outline-secondary:hover {
-    color: #FFFFFF;
-    border-color: #D8618C;
-    background-color: #D8618C;
+.top-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
 }
 
 .top-nav-item {
     display: inline-block;
     margin: 0 16px;
     position: relative;
-}
-
-.top-nav-item {
     text-decoration: underline 0.15em rgba(216, 97, 140, 0);
     color: #212529;
-    transition: text-decoration-color 300ms;
+    transition: text-decoration-color .3s;
 }
 
 .top-nav-item:hover {
@@ -75,6 +58,20 @@ span {
     width: 100%;
     float: left;
     margin-bottom: 24px;
+}
+
+.viewing-icon-navigation {
+    width: 100%;
+    float: left;
+    padding: 1rem !important;
+    border-radius: .5rem !important;
+    background-color: #fff;
+    background-image: linear-gradient(135deg, rgba(216, 97, 140, 0.025), rgba(216, 97, 140, 0.125)) !important;
+}
+
+.viewing-icon-navigation:hover {
+    font-weight: 700;
+    background-image: linear-gradient(135deg, rgba(216, 97, 140, 0.125), rgba(216, 97, 140, 0.25)) !important;
 }
 
 .icon-navigation-icon {
@@ -96,6 +93,54 @@ span {
     vertical-align: -.125em;
 }
 
+.btn-outline-primary {
+    font-weight: 600;
+    color: #212529;
+    border-color: #6c757d;
+}
+
+.btn-outline-primary:hover {
+    color: #ffffff;
+    border-color: #6c757d;
+    background-color: #6c757d;
+}
+
+.btn-outline-secondary {
+    font-weight: 600;
+    color: #212529;
+    border-color: #d8618c;
+}
+
+.btn-outline-secondary:hover {
+    color: #ffffff;
+    border-color: #d8618c;
+    background-color: #d8618c;
+}
+
+.card {
+    margin: 0 1rem 2rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
+    transition: .3s box-shadow, .3s transform;
+}
+
+.card:hover {
+    box-shadow: 0 .2rem 2rem 0 rgba(58,59,69,.15);
+    transform: scale(1.02);
+}
+
+.card-header {
+    padding: .75rem 1.25rem;
+    color: #212529;
+    border-bottom: .125rem solid rgba(216, 97, 140, .5);
+    background-color: #fff;
+    background-image: linear-gradient(135deg, rgba(216, 97, 140, 0.025), rgba(216, 97, 140, 0.125)) !important;
+}
+
+.card-header:first-child {
+    border-radius: 8px 8px 0px 0px;
+}
+
 .card-left {
     float: left;
     width: 50%;
@@ -108,7 +153,39 @@ span {
     padding-right: 16px;
 }
 
-#propertyPhotosCarousel {
+.card-title {
+    margin: 0;
+}
+
+#propertyPhotoscarousel {
     max-height: 598px;
     margin-bottom: 16px;
+}
+
+.property-details {
+    margin: 2rem 0 !important;
+    padding: 1rem !important;
+    border-radius: .5rem !important;
+    background-color: #fff;
+    background-image: linear-gradient(135deg, rgba(216, 97, 140, 0.025), rgba(216, 97, 140, 0.125)) !important;
+    color: rgb(33, 37, 41) !important;
+}
+
+.property-details-title {
+    width: auto;
+    padding: 0 8px 0 .75rem;
+    font-weight: 300 !important;
+    display: inline !important;
+}
+
+.property-details-text {
+    width: auto;
+    padding: 0;
+    font-weight: 400 !important;
+    display: inline !important;
+}
+
+.property-details-description {
+    padding: 0 .75rem;
+    font-weight: 400 !important;
 }

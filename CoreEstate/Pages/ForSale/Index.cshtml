@@ -13,7 +13,9 @@
     <div class="card">
         <a asp-page="./Details" asp-route-id="@item.Id">
             <div class="card-header">
-                @Html.DisplayFor(modelItem => item.Name) for sale
+                <h6 class="m-0 font-weight-bold">
+                    @Html.DisplayFor(modelItem => item.Name) for sale
+                </h6>
             </div>
         </a>
         <div class="card-body">
@@ -60,7 +62,7 @@
 @section scripts
 {
     <script>
-        const PROPERTY_DESCRIPTION_LENGTH = 384;
+        const PROPERTY_DESCRIPTION_LENGTH = 256;
 
         $(document).ready(function () {
             $('.propertyDescription').each(function () {
