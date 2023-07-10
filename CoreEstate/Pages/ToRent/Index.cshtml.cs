@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CoreEstate.Data;
 using CoreEstate.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Data.SqlClient;
 
 namespace CoreEstate.Pages.ToRent
 {
@@ -26,6 +27,9 @@ namespace CoreEstate.Pages.ToRent
         [BindProperty(SupportsGet = true)]
         public string? FilterAddress { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public SortOption? SortOption { get; set; }
+
         public async Task<IActionResult> OnGetAsync()
         {
             if (User.IsInRole(RoleName.IsPropertyManager))
@@ -43,6 +47,22 @@ namespace CoreEstate.Pages.ToRent
             if (!string.IsNullOrEmpty(FilterAddress))
             {
                 toRentProperties = toRentProperties.Where(p => p.Address != null && p.Address.Contains(FilterAddress));
+            }
+
+            switch (SortOption)
+            {
+                case Models.SortOption.PriceDescending:
+                    toRentProperties = toRentProperties.OrderByDescending(p => p.Rent);
+                    break;
+                case Models.SortOption.PriceAscending:
+                    toRentProperties = toRentProperties.OrderBy(p => p.Rent);
+                    break;
+                case Models.SortOption.DateDescending:
+                    toRentProperties = toRentProperties.OrderByDescending(p => p.Id);
+                    break;
+                default:
+                    toRentProperties = toRentProperties.OrderBy(p => p.Id);
+                    break;
             }
 
             ToRentProperties = await toRentProperties.ToListAsync();

@@ -26,6 +26,9 @@ namespace CoreEstate.Pages.ForSale
         [BindProperty(SupportsGet = true)]
         public string? FilterAddress { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public SortOption? SortOption { get; set; }
+
         public async Task<IActionResult> OnGetAsync()
         {
             if (User.IsInRole(RoleName.IsPropertyManager))
@@ -43,6 +46,22 @@ namespace CoreEstate.Pages.ForSale
             if (!string.IsNullOrEmpty(FilterAddress))
             {
                 forSaleProperties = forSaleProperties.Where(p => p.Address != null && p.Address.Contains(FilterAddress));
+            }
+
+            switch (SortOption)
+            {
+                case Models.SortOption.PriceDescending:
+                    forSaleProperties = forSaleProperties.OrderByDescending(p => p.Price);
+                    break;
+                case Models.SortOption.PriceAscending:
+                    forSaleProperties = forSaleProperties.OrderBy(p => p.Price);
+                    break;
+                case Models.SortOption.DateDescending:
+                    forSaleProperties = forSaleProperties.OrderByDescending(p => p.Id);
+                    break;
+                default:
+                    forSaleProperties = forSaleProperties.OrderBy(p => p.Id);
+                    break;
             }
 
             ForSaleProperties = await forSaleProperties.ToListAsync();
