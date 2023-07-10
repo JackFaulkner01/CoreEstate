@@ -23,6 +23,9 @@ namespace CoreEstate.Pages.ForSale
 
         public IList<ForSaleProperty> ForSaleProperties { get;set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string? FilterAddress { get; set; }
+
         public async Task<IActionResult> OnGetAsync()
         {
             if (User.IsInRole(RoleName.IsPropertyManager))
@@ -30,12 +33,19 @@ namespace CoreEstate.Pages.ForSale
                 return RedirectToPage("./Manage");
             }
 
-            if (_context.ForSaleProperties != null)
+            if (_context.ForSaleProperties == null)
             {
-                ForSaleProperties = await _context.ForSaleProperties
-                    .Include(p => p.Photos)
-                    .ToListAsync();
+                return NotFound();
             }
+
+            var forSaleProperties = from p in _context.ForSaleProperties.Include(p => p.Photos) select p;
+
+            if (!string.IsNullOrEmpty(FilterAddress))
+            {
+                forSaleProperties = forSaleProperties.Where(p => p.Address != null && p.Address.Contains(FilterAddress));
+            }
+
+            ForSaleProperties = await forSaleProperties.ToListAsync();
 
             return Page();
         }

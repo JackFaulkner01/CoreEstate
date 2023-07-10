@@ -23,6 +23,9 @@ namespace CoreEstate.Pages.ToRent
 
         public IList<ToRentProperty> ToRentProperties { get;set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string? FilterAddress { get; set; }
+
         public async Task<IActionResult> OnGetAsync()
         {
             if (User.IsInRole(RoleName.IsPropertyManager))
@@ -30,12 +33,19 @@ namespace CoreEstate.Pages.ToRent
                 return RedirectToPage("./Manage");
             }
 
-            if (_context.ToRentProperties != null)
+            if (_context.ToRentProperties == null)
             {
-                ToRentProperties = await _context.ToRentProperties
-                    .Include(p => p.Photos)
-                    .ToListAsync();
+                return NotFound();
             }
+
+            var toRentProperties = from p in _context.ToRentProperties.Include(p => p.Photos) select p;
+
+            if (!string.IsNullOrEmpty(FilterAddress))
+            {
+                toRentProperties = toRentProperties.Where(p => p.Address != null && p.Address.Contains(FilterAddress));
+            }
+
+            ToRentProperties = await toRentProperties.ToListAsync();
 
             return Page();
         }

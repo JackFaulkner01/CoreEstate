@@ -8,6 +8,20 @@
 <h1>@ViewData["Title"]</h1>
 <hr />
 
+<form>
+    <div class="row align-items-center justify-content-end mb-3 me-2 g-3">
+        <div class="col-auto">
+            <label class="form-label mb-0">Address:</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="FilterAddress" type="text" class="form-control" />
+        </div>
+        <div class="col-auto">
+            <input type="submit" value="Filter" class="btn btn-outline-primary" />
+        </div>
+    </div>
+</form>
+
 @foreach (var item in Model.ForSaleProperties)
 {
     @await Html.PartialAsync("../Shared/_ForSalePropertyCard", item)
